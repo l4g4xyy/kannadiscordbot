@@ -1,2 +1,1 @@
-# kannabot
 # kannabot2

@@ -13,13 +13,19 @@ no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
 
 # Initialisation du bot
 
-bot = commands.Bot(command_prefix="-")
+activity = discord.Game(name="la version 1.2")
+#activity = discord.Activity(type=discord.ActivityType.watching, name="ses tests")
+
+status = discord.Status.online
+#status = discord.Status.dnd
+
+bot = commands.Bot(command_prefix="-", activity=activity,
+                   status=status)
 
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game('la version 1.2'))
-    # await bot.change_presence(activity=discord.Streaming(name='son test', url='http://www.twitch.tv'))
+    print("Ready !")
 
 
 # Commandes
@@ -29,13 +35,29 @@ async def on_ready():
 async def ping(ctx):
     await ctx.message.reply(f"** Coucou {ctx.author.name} !**")
 
-
+'''
 @bot.command(name="setup")
 async def setup(ctx):
     embed = discord.Embed(title="Bienvenue",
                           description=f"dans le serveur Kanna !", color=000000)
     message = await ctx.send(embed=embed)
-    await message.add_reaction(":coeur:")
+    emote = '<coeur:957349173282340905'
+    await message.add_reaction(emote)
+
+
+@bot.event
+async def on_raw_reaction_add(payload):
+    if payload.channel_id == 950176106592501760 and payload.message_id == 957411108472356864:
+        print(str(payload.emoji))
+        if str(payload.emoji) == '<a:coeur:957349173282340905>':
+            print("good1")
+            guild = bot.get_guild(payload.guild_id)
+            print("good2")
+            member = guild.get_member(payload.user_id)
+            print("good4")
+            await payload.member.add_roles(guild, member, 956347322864898129)
+            print("cool !")
+'''
 
 
 @bot.command(name="clean")

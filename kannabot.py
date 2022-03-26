@@ -1,7 +1,7 @@
 
+import discord
 from discord.ext import commands
 import random
-import discord
 
 # Database
 
@@ -24,9 +24,12 @@ async def on_ready():
 
 # Commandes
 
+print("Ready !")
+
 
 @bot.command()
 async def ping(ctx):
+    print("I am here !")
     await ctx.message.reply("**Je suis là !**")
 
 

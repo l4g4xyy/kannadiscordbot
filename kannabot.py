@@ -30,12 +30,12 @@ print("Ready 0")
 @bot.command()
 async def ping(ctx):
     print("I am here !")
-    await ctx.message.reply("**Je suis là !**")
+    await ctx.mesage.reply("**Je suis là !**")
 
 print("Ready 1")
 
 
-@bot.command(name="clean")
+@bot.command()
 async def clean(ctx, *arg):
     if arg == ():
         await ctx.channel.send("**Veuillez entrer le nombre de messages à nettoyer !**")
@@ -48,7 +48,7 @@ async def clean(ctx, *arg):
 print("Ready 2")
 
 
-@bot.command(name="question")
+@bot.command()
 async def question(ctx, *arg):
     if arg == ():
         await ctx.channel.send("**Veuillez entrer une question !**")
@@ -74,7 +74,7 @@ async def question(ctx, *arg):
 print("Ready 3")
 
 
-@bot.command(name="ban")
+@bot.command()
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné."):
     await ctx.guild.ban(user, reason=reason)
@@ -92,7 +92,7 @@ async def ban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné
 print("Ready 4")
 
 
-@bot.command(name="unban")
+@bot.command()
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné"):
     await ctx.guild.unban(user, reason=reason)
@@ -109,7 +109,7 @@ async def unban(ctx, user: discord.User, *, reason="Aucune raison n'a été donn
 print("Ready 5")
 
 
-@bot.command(name="kick")
+@bot.command()
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, user: discord.User, *, reason="Aucune raison n'a été donné"):
     await ctx.guild.kick(user, reason=reason)
@@ -147,7 +147,7 @@ async def getMutedRole(ctx):
 print("Ready 8")
 
 
-@bot.command(name="mute")
+@bot.command()
 @commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
 async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
@@ -162,10 +162,10 @@ async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été d
 
     await ctx.send(embed=embed)
 
-print("Ready 9")
+print()
 
 
-@bot.command(name="unmute")
+@bot.command()
 @commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
 async def unmute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
@@ -185,4 +185,3 @@ print("Ready 10")
 # Lancement
 
 bot.run("OTU1MjM2MTcyMzExOTgyMjAw.YjevAg.eUiu6tczT5MwK2x1ef7FVYfElHM")
-print("Ready final")

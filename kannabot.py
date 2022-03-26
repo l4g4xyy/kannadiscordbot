@@ -1,25 +1,25 @@
 
 import discord
 from discord.ext import commands
-import random
+#import random
 
 # Database
 
-yes_rep = ["C'est une certitude.", "Ma réponse est oui !",
-           "Évidemment.", "J'en suis sûr et certain.", "Affirmatif camarade !"]
+# yes_rep = ["C'est une certitude.", "Ma réponse est oui !",
+#           "Évidemment.", "J'en suis sûr et certain.", "Affirmatif camarade !"]
 
-no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
-          "C'est non.", "Pas du tout !", "Je désapprouve."]
+# no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
+#          "C'est non.", "Pas du tout !", "Je désapprouve."]
 
 # Initialisation du bot
 
 
-bot = commands.Bot(command_prefix="-")
+bot = commands.Bot(command_prefix="-", description="Kanna Bot")
 
 
 @bot.event
 async def on_ready():
-    await bot.change_presenc(activity=discord.Game('la version test'))
+    await bot.change_presence(activity=discord.Game('la version testing'))
 
 
 # Commandes
@@ -30,8 +30,9 @@ print("Ready 0")
 @bot.command()
 async def ping(ctx):
     print("I am here !")
-    await ctx.mesage.reply("**Je suis là !**")
+    await ctx.message.reply("**Je suis là !**")
 
+'''
 print("Ready 1")
 
 
@@ -181,7 +182,7 @@ async def unmute(ctx, member: discord.Member, *, reason="Aucune raison n'a été
     await ctx.send(embed=embed)
 
 print("Ready 10")
-
+'''
 # Lancement
 
 bot.run("OTU1MjM2MTcyMzExOTgyMjAw.YjevAg.eUiu6tczT5MwK2x1ef7FVYfElHM")

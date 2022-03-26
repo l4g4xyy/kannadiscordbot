@@ -19,7 +19,7 @@ bot = commands.Bot(command_prefix="-")
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game('la version testing'))
+    await bot.change_presenc(activity=discord.Game('la version test'))
 
 
 # Commandes
@@ -162,7 +162,7 @@ async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été d
 
     await ctx.send(embed=embed)
 
-print()
+print("Ready 9")
 
 
 @bot.command()

@@ -1,6 +1,7 @@
 
 import discord
 from discord.ext import commands
+import os
 #import random
 
 # Database
@@ -186,4 +187,4 @@ print("Ready 10")
 '''
 # Lancement
 
-bot.run("OTU1MjM2MTcyMzExOTgyMjAw.YjevAg.eUiu6tczT5MwK2x1ef7FVYfElHM")
+bot.run(os.environ["DISCORD_TOKEN"])

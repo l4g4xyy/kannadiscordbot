@@ -18,7 +18,8 @@ bot = commands.Bot(command_prefix="-")
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game('la version 1.2'))
+    # await bot.change_presence(activity=discord.Game('la version 1.2'))
+    await bot.change_presence(activity=discord.Streaming('son test'))
 
 
 # Commandes
@@ -27,6 +28,14 @@ async def on_ready():
 @bot.command(name="ping")
 async def ping(ctx):
     await ctx.message.reply(f"** Coucou {ctx.author.name} !**")
+
+
+@bot.command(name="setup")
+async def setup(ctx):
+    embed = discord.Embed(title="Bienvenue",
+                          description=f"dans le serveur Kanna !", color=000000)
+    message = await ctx.send(embed=embed)
+    await message.add_reaction(":coeur:")
 
 
 @bot.command(name="clean")
@@ -74,9 +83,7 @@ async def ban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(
         url="https://cdn.discordapp.com/attachments/950176106592501760/955633376075874344/952598944528072794.png")
-    #embed.add_field(name = "Membre banni", value = user.name, inline = True)
     embed.add_field(name="Raison", value=reason, inline=True)
-    #embed.add_field(name = "Banni par", value = ctx.author.name, inline = True)
     #embed.set_footer(text = "Est-ce que je mets qlq chose là ?")
 
     await ctx.send(embed=embed)
@@ -130,7 +137,7 @@ async def getMutedRole(ctx):
 
 
 @bot.command(name="mute")
-@commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
+@commands.has_any_role(938563308347355137, 953706352969138218, 941936882776965212, 926805088931029012, 954439468331450370)
 async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
     await member.add_roles(muted_role, reason=reason)
@@ -146,7 +153,7 @@ async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été d
 
 
 @bot.command(name="unmute")
-@commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
+@commands.has_any_role(938563308347355137, 953706352969138218, 941936882776965212, 926805088931029012, 954439468331450370)
 async def unmute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
     await member.remove_roles(muted_role, reason=reason)

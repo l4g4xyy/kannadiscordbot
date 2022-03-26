@@ -18,8 +18,8 @@ bot = commands.Bot(command_prefix="-")
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game('la version 1.2'))
-    # await bot.change_presence(activity=discord.Streaming(name="son test"))
+    # await bot.change_presence(activity=discord.Game('la version 1.2'))
+    await bot.change_presence(activity=discord.Streaming(name='son test', url='http://www.twitch.tv'))
 
 
 # Commandes

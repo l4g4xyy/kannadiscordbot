@@ -1,1 +1,1 @@
-# kannabot2
+# kannadiscordbot

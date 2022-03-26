@@ -26,7 +26,7 @@ async def on_ready():
 
 @bot.command(name="ping")
 async def ping(ctx):
-    await ctx.message.reply("**Je suis là !**")
+    await ctx.message.reply(f"** Coucou {ctx.author.name} !**")
 
 
 @bot.command(name="clean")

@@ -14,7 +14,7 @@ from discord.ext import commands
 # Initialisation du bot
 
 
-bot = commands.Bot(command_prefix="-", description="Kanna Bot")
+bot = commands.Bot(command_prefix="!", description="Kanna Bot")
 
 
 @bot.event
@@ -29,8 +29,8 @@ print("Ready 0")
 
 @bot.command()
 async def ping(ctx):
-    print("I am here !")
-    await ctx.message.reply("**Je suis là !**")
+    # await ctx.message.reply("**Je suis là !**")
+    await ctx.send("Hello!")
 
 '''
 print("Ready 1")

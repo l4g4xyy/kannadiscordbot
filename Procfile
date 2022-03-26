@@ -1,1 +1,1 @@
-worker: python kannabot.py
+worker: python3 kannabot.py

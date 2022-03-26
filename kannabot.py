@@ -20,6 +20,7 @@ bot = commands.Bot(command_prefix="!", description="Kanna Bot")
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game('la version test'))
+    print("Marche !")
 
 
 # Commandes

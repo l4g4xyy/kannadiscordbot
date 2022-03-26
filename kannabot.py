@@ -1,44 +1,35 @@
-
-import discord
-from discord.ext import commands
 import os
-#import random
+from discord.ext import commands
+import discord
+import random
 
 # Database
 
-# yes_rep = ["C'est une certitude.", "Ma réponse est oui !",
-#           "Évidemment.", "J'en suis sûr et certain.", "Affirmatif camarade !"]
+yes_rep = ["C'est une certitude.", "Ma réponse est oui !",
+           "Évidemment.", "J'en suis sûr et certain.", "Affirmatif camarade !"]
 
-# no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
-#          "C'est non.", "Pas du tout !", "Je désapprouve."]
+no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
+          "C'est non.", "Pas du tout !", "Je désapprouve."]
 
 # Initialisation du bot
 
-
-bot = commands.Bot(command_prefix="!", description="Kanna Bot")
+bot = commands.Bot(command_prefix="-")
 
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game('la version test'))
-    print("Marche !")
+    await bot.change_presence(activity=discord.Game('la version 1.2'))
 
 
 # Commandes
 
-print("Ready 0")
 
-
-@bot.command()
+@bot.command(name="ping")
 async def ping(ctx):
-    # await ctx.message.reply("**Je suis là !**")
-    await ctx.send("Hello!")
-
-'''
-print("Ready 1")
+    await ctx.message.reply("**Je suis là !**")
 
 
-@bot.command()
+@bot.command(name="clean")
 async def clean(ctx, *arg):
     if arg == ():
         await ctx.channel.send("**Veuillez entrer le nombre de messages à nettoyer !**")
@@ -48,10 +39,8 @@ async def clean(ctx, *arg):
             await each_msg.delete()
         await ctx.channel.send(f"**{int(arg[0])} messages cleaned !**", delete_after=5)
 
-print("Ready 2")
 
-
-@bot.command()
+@bot.command(name="question")
 async def question(ctx, *arg):
     if arg == ():
         await ctx.channel.send("**Veuillez entrer une question !**")
@@ -74,10 +63,8 @@ async def question(ctx, *arg):
         else:
             await ctx.channel.send("**Vous ne savez pas faire une question ?**")
 
-print("Ready 3")
 
-
-@bot.command()
+@bot.command(name="ban")
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné."):
     await ctx.guild.ban(user, reason=reason)
@@ -87,15 +74,15 @@ async def ban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
     embed.set_thumbnail(
         url="https://cdn.discordapp.com/attachments/950176106592501760/955633376075874344/952598944528072794.png")
+    #embed.add_field(name = "Membre banni", value = user.name, inline = True)
     embed.add_field(name="Raison", value=reason, inline=True)
-    # embed.set_footer(text = "Est-ce que je mets qlq chose là ?")    // texte en bas du embed
+    #embed.add_field(name = "Banni par", value = ctx.author.name, inline = True)
+    #embed.set_footer(text = "Est-ce que je mets qlq chose là ?")
 
     await ctx.send(embed=embed)
 
-print("Ready 4")
 
-
-@bot.command()
+@bot.command(name="unban")
 @commands.has_permissions(ban_members=True)
 async def unban(ctx, user: discord.User, *, reason="Aucune raison n'a été donné"):
     await ctx.guild.unban(user, reason=reason)
@@ -109,10 +96,8 @@ async def unban(ctx, user: discord.User, *, reason="Aucune raison n'a été donn
 
     await ctx.send(embed=embed)
 
-print("Ready 5")
 
-
-@bot.command()
+@bot.command(name="kick")
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, user: discord.User, *, reason="Aucune raison n'a été donné"):
     await ctx.guild.kick(user, reason=reason)
@@ -126,8 +111,6 @@ async def kick(ctx, user: discord.User, *, reason="Aucune raison n'a été donn�
 
     await ctx.send(embed=embed)
 
-print("Ready 6")
-
 
 async def createdMutedRole(ctx):
     mutedRole = await ctx.guild.create_role(name="muted", permissions=discord.Permissions(send_messages=False, speak=False, add_reactions=False), reason="Création du rôle muted")
@@ -135,8 +118,6 @@ async def createdMutedRole(ctx):
     for channel in ctx.guild.channels:
         await channel.set_permissions(mutedRole, send_messages=False, speak=False, add_reactions=False)
     return mutedRole
-
-print("Ready 7")
 
 
 async def getMutedRole(ctx):
@@ -147,10 +128,8 @@ async def getMutedRole(ctx):
 
     return await createdMutedRole(ctx)
 
-print("Ready 8")
 
-
-@bot.command()
+@bot.command(name="mute")
 @commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
 async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
@@ -165,10 +144,8 @@ async def mute(ctx, member: discord.Member, *, reason="Aucune raison n'a été d
 
     await ctx.send(embed=embed)
 
-print("Ready 9")
 
-
-@bot.command()
+@bot.command(name="unmute")
 @commands.has_any_role("⌜Owner⌝", "⌜Co owner⌝", "⌜Administrateur⌝", "⌜Modérateur⌝", "⌜Modérateur test⌝")
 async def unmute(ctx, member: discord.Member, *, reason="Aucune raison n'a été donné"):
     muted_role = await getMutedRole(ctx)
@@ -183,8 +160,7 @@ async def unmute(ctx, member: discord.Member, *, reason="Aucune raison n'a été
 
     await ctx.send(embed=embed)
 
-print("Ready 10")
-'''
+
 # Lancement
 
 bot.run(os.environ["DISCORD_TOKEN"])

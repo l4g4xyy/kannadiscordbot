@@ -13,8 +13,9 @@ no_rep = ["Négatif camarade !", "Je ne pense pas que ce soit le cas.",
 
 # Initialisation du bot
 
-activity = discord.Game(name="la version 1.2")
-#activity = discord.Activity(type=discord.ActivityType.watching, name="ses tests")
+activity = discord.Game(name="la version 1.3")
+# activity = discord.Activity(
+#    type=discord.ActivityType.watching, name="ses tests")
 
 status = discord.Status.online
 #status = discord.Status.dnd
@@ -35,29 +36,15 @@ async def on_ready():
 async def ping(ctx):
     await ctx.message.reply(f"** Coucou {ctx.author.name} !**")
 
-'''
-@bot.command(name="setup")
-async def setup(ctx):
-    embed = discord.Embed(title="Bienvenue",
-                          description=f"dans le serveur Kanna !", color=000000)
-    message = await ctx.send(embed=embed)
-    emote = '<coeur:957349173282340905'
-    await message.add_reaction(emote)
 
+@bot.command(name="rules")
+async def rules(ctx):
+    embed = discord.Embed(title="Hey, bienvenue à toi sur le serveur !",
+                          description=f"Je te prie de lire le règlement attentivement <a:ping:958506589067829320>\n\n\n1/ <a:white_right_arrow:957288255458521194> Toute insulte, manque de respect, etc.. sera suivi d'une sanction.\n\n\n2/ <a:white_right_arrow:957288255458521194> Le troll est formellement interdit sur le serveur et sera suivi d'un ban.\n\n\n3/ <a:white_right_arrow:957288255458521194> Toute pub d'un serveur menant à autre serveur que Kanna sera suivie d'un ban idd.\n\n\n4/ <a:white_right_arrow:957288255458521194> Tout spam sera suivi d'un ban y compris le spam de tickets.\n\n\n5/ <a:white_right_arrow:957288255458521194> Tout abus de pouvoir sera suivi d'un derank.\n\n\n6/ <a:white_right_arrow:957288255458521194> Toute photo inappropriée sera suivie d'un ban.\n\n\n7/ <a:white_right_arrow:957288255458521194> Le nsfw est interdit sur le serveur ! \n\n\n8/ <a:white_right_arrow:957288255458521194> Il est interdit de divulguer des informations personnelles sur qui que ce soit.\n\n\n9/ <a:white_right_arrow:957288255458521194> Toute personne qui ne respectera pas les salons sera warn, et à 3 warns c'est un mute\n\n\n10/ <a:white_right_arrow:957288255458521194> Le vol de mudae n'est pas autorisé; si on vous vole un perso je vous invite à nous faire un ticket et la personne devra rendre le perso + warn. Si ça se reproduit, c'est kick", color=000000)
+    embed.set_image(
+        url="https://cdn.discordapp.com/attachments/950176106592501760/958499750372573234/banner_rules_kanna.png")
 
-@bot.event
-async def on_raw_reaction_add(payload):
-    if payload.channel_id == 950176106592501760 and payload.message_id == 957411108472356864:
-        print(str(payload.emoji))
-        if str(payload.emoji) == '<a:coeur:957349173282340905>':
-            print("good1")
-            guild = bot.get_guild(payload.guild_id)
-            print("good2")
-            member = guild.get_member(payload.user_id)
-            print("good4")
-            await payload.member.add_roles(guild, member, 956347322864898129)
-            print("cool !")
-'''
+    await ctx.send(embed=embed)
 
 
 @bot.command(name="clean")
@@ -68,7 +55,7 @@ async def clean(ctx, *arg):
         messages = await ctx.channel.history(limit=int(arg[0]) + 1).flatten()
         for each_msg in messages:
             await each_msg.delete()
-        await ctx.channel.send(f"**{int(arg[0])} messages cleaned !**", delete_after=5)
+        await ctx.channel.send(f"**{int(arg[0])} message(s) cleaned !**", delete_after=5)
 
 
 @bot.command(name="question")

@@ -1,23 +1,28 @@
 VERSION 1.0 :
 
--ajout de &clean <nb>
+->ajout de -clean <nb>
 permet de supprimer nb messages dans le channel
 
--ajout de &question <question>
+->ajout de -question <question>
 permet de répondre à la question oui/non (hasard)
 
 VERSION 1.1 :
 
--ajout de &ban <user> [reason]
+->ajout de -ban <user> [reason]
 permet de ban user avec une reason facultative
 
--ajout de &unban <user> [reason]
+->ajout de -unban <user> [reason]
 permet de unban user avec une reason facultative
 
 VERSION 1.2 :
 
--ajout de &mute <member> [reason]
+->ajout de -mute <member> [reason]
 permet de mute member
 
--ajout de &unmute <member> [reason]
+->ajout de -unmute <member> [reason]
 permet de unmute member
+
+VERSION 1.3 :
+
+->ajout de -rules
+affiche le règlement du serveur Kanna

@@ -26,3 +26,8 @@ VERSION 1.3 :
 
 ->ajout de -rules
 affiche le règlement du serveur Kanna
+
+VERSION 1.4 :
+
+->ajout de -role1 -role2 -role3
+système d'auto-rôles
